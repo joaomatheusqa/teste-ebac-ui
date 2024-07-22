@@ -3,18 +3,18 @@
 describe('Funcionalidade: Login', () => {
 
     beforeEach(() => {
-        cy.visit('http://lojaebac.ebaconline.art.br/minha-conta/edit-account/')
+        cy.visit('http://lojaebac.ebaconline.art.br/minha-conta/')
     });
 
     afterEach(() => {
         cy.screenshot()
     });
 
-    it('Deve fazer login com sucesso', () => {        
+    it.only('Deve fazer login com sucesso', () => {        
         cy.get('#username').type('testeebac@ebac.com.br')
         cy.get('#password').type('123teste@')
         cy.get('.woocommerce-form > .button').click()
-        cy.get('.form-row-first > label').should('contain' , 'First name *')
+        cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain' , 'Olá, testeebac (não é testeebac? Sair)')
     })
 
     it('Deve exibir uma mensagem de erro ao inserir usuário inválido', () => {        
