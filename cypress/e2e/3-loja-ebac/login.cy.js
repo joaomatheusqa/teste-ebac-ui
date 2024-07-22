@@ -10,7 +10,7 @@ describe('Funcionalidade: Login', () => {
         cy.screenshot()
     });
 
-    it.only('Deve fazer login com sucesso', () => {        
+    it('Deve fazer login com sucesso', () => {        
         cy.get('#username').type('testeebac@ebac.com.br')
         cy.get('#password').type('123teste@')
         cy.get('.woocommerce-form > .button').click()
