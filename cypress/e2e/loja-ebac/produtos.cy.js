@@ -6,7 +6,7 @@ describe('Funcionalidade: Produtos', () => {
     beforeEach(() => {
         produtosPage.visitarUrl()
     });
-    it('Deve selecionar um preoduto da lista', () => {
+    it('Deve selecionar um produto da lista', () => {
         let produto = 'Abominable Hoodie'
         produtosPage.buscarProdutoLista(produto)
         cy.get('.product_title').should('contain', produto)
@@ -21,11 +21,11 @@ describe('Funcionalidade: Produtos', () => {
 
     it('Deve visitar a página de produto', () => {
         produtosPage.visitarProduto('argus all weather tank')
-        cy.get('.product_title').should('contain', 'argus all-weather tan')
+        cy.get('.product_title').should('contain', 'Argus All-Weather Tank')
         
     });
 
-    it('Deve adicionar produto ao carrinho', () => {
+    it.only('Deve adicionar produto ao carrinho', () => {
         let qtd = 7
         produtosPage.buscarProduto('argus all weather tan')
         produtosPage.addProdutoCarrinho('M', 'Gray', qtd)
@@ -33,15 +33,15 @@ describe('Funcionalidade: Produtos', () => {
         
     });
 
-    it.only('Deve adicionar produto ao carrinho buscando da massa de dados', () => {
-        cy.fixture('produto').then(dados => {
+    it('Deve adicionar produto ao carrinho buscando da massa de dados', () => {
+        cy.fixture('produtos').then(dados => {
             produtosPage.buscarProduto(dados[1].nomeProduto)
             produtosPage.addProdutoCarrinho(
                 dados[1].tamanho, 
                 dados[1].cor, 
                 dados[1].quantidade)
 
-            cy.get('.woocommerce-message').should('contain', dados[1].nomeProduto)
+                cy.get('.product_title').should('contain', dados[1].nomeProduto)
             
         })
 
